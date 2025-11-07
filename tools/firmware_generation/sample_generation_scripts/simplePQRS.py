@@ -356,7 +356,7 @@ MAC_MODE = 0
 
 mii_mode_parameters.append({
     "xMII_MODE[0]"    : SGMII,
-    "PHY_MAC[0]"      : 1,  # not applicable for RGMII,
+    "PHY_MAC[0]"      : 0,  # not applicable for RGMII,
     "xMII_MODE[1]"    : RGMII,
     "PHY_MAC[1]"      : 0,  # not applicable for RGMII,
     "xMII_MODE[2]"    : RGMII,
