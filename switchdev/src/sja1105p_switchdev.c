@@ -1115,12 +1115,12 @@ static void fec_callback(int status_change, int link)
 
 static void register_fec(void)
 {
-	fec_set_phy_callback(fec_callback);
+	// fec_set_phy_callback(fec_callback);  Disabled for compatibility with kernel 4.14
 }
 
 static void unregister_fec(void)
 {
-	fec_set_phy_callback(NULL);
+	// fec_set_phy_callback(NULL);  Disabled for compatibility with kernel 4.14
 }
 
 

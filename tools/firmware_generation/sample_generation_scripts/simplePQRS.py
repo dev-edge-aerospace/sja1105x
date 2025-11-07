@@ -61,6 +61,7 @@ import os
 
 from ethsw.configuration import *
 from ethsw.tables_sja1105pqrs import *
+import hex2bin as _hex2bin
 
 NO_CBS_BLOCKS = 16
 NO_ETH_PORTS = 5
@@ -354,8 +355,8 @@ PHY_MODE = 1
 MAC_MODE = 0
 
 mii_mode_parameters.append({
-    "xMII_MODE[0]"    : RGMII,
-    "PHY_MAC[0]"      : 0,  # not applicable for RGMII,
+    "xMII_MODE[0]"    : SGMII,
+    "PHY_MAC[0]"      : 1,  # not applicable for RGMII,
     "xMII_MODE[1]"    : RGMII,
     "PHY_MAC[1]"      : 0,  # not applicable for RGMII,
     "xMII_MODE[2]"    : RGMII,
@@ -376,11 +377,18 @@ filename   = filename.replace(".py", "_SJA1105QS.hex")
 c.deviceid = SJA1105QS_DEVICEID
 c.to_hex(filename)
 
-filename = os.path.basename(__file__)
-filename   = filename.replace(".py", "_SJA1105PR.hex")
+# Edge Modifications
+to_binary_converter = _hex2bin.Hex2BinConverter()
+# Last parameter on create_bin_file
+# @param be1_le0 format of output:  1 for BigEndian 0 for LittleEndian   
+to_binary_converter.create_bin_file(filename, "sja1105p_little_endian_cfg.bin" , 0);
+to_binary_converter.create_bin_file(filename, "sja1105p_big_endian_cfg.bin", 1);
 
-c.deviceid = SJA1105PR_DEVICEID
-c.to_hex(filename)
+# filename = os.path.basename(__file__)
+# filename   = filename.replace(".py", "_SJA1105PR.hex")
+
+# c.deviceid = SJA1105PR_DEVICEID
+# c.to_hex(filename)
 
 #############################################################################
 # Executive Summary

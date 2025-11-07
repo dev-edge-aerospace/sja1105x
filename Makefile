@@ -84,6 +84,14 @@ FIRMWARE_DIR="tools/firmware_generation"
 .PHONY: all modules clean firmware firmware_clean
 
 all: modules firmware
+	@echo "NUMBER_SWITCHES="$(NUMBER_SWITCHES)
+	@echo "SPI_SWAP="$(SPI_SWAP)
+	@echo "SPI_FREQ="$(SPI_FREQ)
+	@echo "SPI_BPW="$(SPI_BPW)
+	@echo "SPI_BPW_MSG="$(SPI_BPW_MSG)
+	@echo "NR_CFG_BLOCKS="$(NR_CFG_BLOCKS)
+	@echo "KERNELDIR"=$(KERNELDIR)
+
 
 modules:
 	$(MAKE) ARCH=$(MYARCHITECTURE) CROSS_COMPILE=$(MYTOOLCHAIN) CC=$(MYCOMPILER) -C $(KERNELDIR) M=`pwd` modules

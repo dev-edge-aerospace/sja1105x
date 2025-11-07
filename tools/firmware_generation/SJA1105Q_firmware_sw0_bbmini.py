@@ -147,7 +147,7 @@ SPEED_1GBPS = 1
 SPEED_100MBPS = 2
 SPEED_10MBPS = 3
 
-speed = [SPEED_1GBPS, SPEED_1GBPS, SPEED_100MBPS, SPEED_1GBPS, SPEED_HOST]
+speed = [SPEED_HOST, SPEED_1GBPS, SPEED_100MBPS, SPEED_1GBPS, SPEED_HOST]
 speed_Mbps = [10 ** (4 - x) for x in speed]
 
 default_vlan = 555  #Default VLAN ID on all ports for untagged frames is 0
@@ -167,8 +167,6 @@ c.append(mac_configuration_table)
 
 for i in range(NO_ETH_PORTS):
     mac_configuration_table.append({
-
-
 	"INGMIRRDEI" : 0,
 	"INGMIRRPCP" : 0,
 	"INGMIRRVID" : 0,
@@ -390,12 +388,12 @@ PHY_MODE = 1
 MAC_MODE = 0
 
 mii_mode_parameters.append({
-    "xMII_MODE[0]"    : RGMII,
+    "xMII_MODE[0]"    : SGMII,
     "PHY_MAC[0]"      : PHY_MODE,  # not applicable for RGMII,
     "xMII_MODE[1]"    : RGMII,
     "PHY_MAC[1]"      : MAC_MODE,  # not applicable for RGMII,
     "xMII_MODE[2]"    : MII,
-    "PHY_MAC[2]"      : PHY_MODE,  # not applicable for RGMII,
+    "PHY_MAC[2]"      : MAC_MODE,  # not applicable for RGMII,
     "xMII_MODE[3]"    : RGMII,
     "PHY_MAC[3]"      : MAC_MODE,  # not applicable for RGMII,
     "xMII_MODE[4]"    : RGMII,
@@ -406,7 +404,7 @@ mii_mode_parameters.append({
 # Write out hex and bin files
 #############################################################################
 
-endiannes = 0 # little-endian
+endiannes = 1 # little-endian
 
 filename = os.path.basename(__file__)
 filename   = filename.replace(".py", "_SJA1105QS.hex")
@@ -414,6 +412,7 @@ filename   = filename.replace(".py", "_SJA1105QS.hex")
 c.deviceid = SJA1105QS_DEVICEID
 c.to_hex(filename)
 
+# Edge Modifications
 sw_no = int(filename.split("_")[2][-1]) + 1
 output_bin_filename = "sja1105p_{}-3_cfg.bin".format(sw_no)
 
