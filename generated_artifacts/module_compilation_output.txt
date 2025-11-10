@@ -1,7 +1,33 @@
 make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC=aarch64-linux-gnu-gcc -C /home/forlinx/work/OK10xx-linux-fs/flexbuild/build/linux/linux/arm64/output M=`pwd` modules
 make[1]: Entering directory '/home/forlinx/work/OK10xx-linux-fs/flexbuild/build/linux/linux/arm64/output'
+  CC [M]  /home/forlinx/work/sja1105x/sja1105p_init.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_integration/src/sja1105p_spi_linux.o
+  CC [M]  /home/forlinx/work/sja1105x/app/src/sja1105p_cfg_file.o
+  CC [M]  /home/forlinx/work/sja1105x/app/src/sja1105p_debugfs.o
+  CC [M]  /home/forlinx/work/sja1105x/app/src/sja1105p_general_status.o
+  CC [M]  /home/forlinx/work/sja1105x/app/src/sja1105p_hal_export.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_config.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_cbs.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_mgmtRoutes.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_ptp.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_vlan.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_ethIf.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_portConfig.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_utils.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_addressResolutionTable.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_configStream.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/NXP_SJA1105P_diagnostics.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/low_level_driver/NXP_SJA1105P_auxiliaryConfigurationUnit.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/low_level_driver/NXP_SJA1105P_clockGenerationUnit.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/low_level_driver/NXP_SJA1105P_resetGenerationUnit.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/low_level_driver/NXP_SJA1105P_sgmii.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/low_level_driver/NXP_SJA1105P_spi.o
+  CC [M]  /home/forlinx/work/sja1105x/platform_independent/src/low_level_driver/NXP_SJA1105P_switchCore.o
+  CC [M]  /home/forlinx/work/sja1105x/switchdev/src/sja1105p_switchdev.o
+  LD [M]  /home/forlinx/work/sja1105x/sja1105pqrs.o
   Building modules, stage 2.
   MODPOST 1 modules
+  CC      /home/forlinx/work/sja1105x/sja1105pqrs.mod.o
   LD [M]  /home/forlinx/work/sja1105x/sja1105pqrs.ko
 make[1]: Leaving directory '/home/forlinx/work/OK10xx-linux-fs/flexbuild/build/linux/linux/arm64/output'
 make -C "tools/firmware_generation" BOARD=bbmini NR_SWITCHES=1
