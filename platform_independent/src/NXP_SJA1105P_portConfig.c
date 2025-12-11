@@ -272,7 +272,7 @@ extern uint8_t initSgmii(uint8_t switchId, uint8_t autoNegotiation, SJA1105P_spe
 	const uint8_t k_txAttn  = 0x1;  /* ~650mVpp TX signal */
 	const uint8_t k_txBoost = 0;    /* boost disabled */
 	const uint8_t k_rxEqVal = 0;    /* Rx equalizer disabled */
-	const uint8_t k_txLvl   = 0;    /* Lowest level */
+	const uint8_t k_txLvl   = 0x10;    /* Lowest level */
 	const uint8_t k_losLvl  = 0x9;  /* 50mVpp threshold */
 	SJA1105P_levelControlArgument_t levelControl;
 
@@ -315,11 +315,11 @@ extern uint8_t initSgmii(uint8_t switchId, uint8_t autoNegotiation, SJA1105P_spe
 			digitalControl1.macAutoSw = 1;  /* Automatically switch speed after auto-negotiation is complete */
 			ret += SJA1105P_setDigitalControl1(&digitalControl1, switchId);
 		}
-
 		basicControl.autonegEnable = 1;  /* Enable auto-negotiation */
 		ret += SJA1105P_setBasicControl(&basicControl, switchId);
+		printk("Test of message in case it enter auto negotiation modern\r\n");
 	}
-
+	printk("Test of message in case it configures sgmii\r\n");
 	return ret;
 }
 
