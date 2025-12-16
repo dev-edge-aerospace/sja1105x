@@ -387,12 +387,12 @@ static int sja1105p_configuration_load(const struct firmware *config_file, struc
 		//TODO: should use SJA1105P_CONFIG_WORDS_PER_BLOCK many words per transfer
 		int block_size_words = MIN(SPI_CFG_BLOCKS, remaining_words);
 
-		if (verbosity > 2) dev_info(&spi->dev, "block_size_words %d remaining_words %d\n", block_size_words, remaining_words);
+		if (verbosity > 3) dev_info(&spi->dev, "block_size_words %d remaining_words %d\n", block_size_words, remaining_words);
 
 		if (sja1105p_cfg_block_write(spi, dev_addr, cfg_data, block_size_words) < 0)
 			goto err_cfg;
 
-		if (verbosity > 1) dev_info(&spi->dev, "Loaded block %d @%08x\n", i, dev_addr);
+		if (verbosity > 3) dev_info(&spi->dev, "Loaded block %d @%08x\n", i, dev_addr);
 
 		dev_addr += block_size_words;
 		cfg_data += block_size_words;

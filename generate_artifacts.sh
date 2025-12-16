@@ -43,7 +43,8 @@ cp sja1105pqrs.ko generated_artifacts/
 ## Generates Binaries
 echo "## Generating sja1105 configuration binaries..."
 cd tools/firmware_generation/sample_generation_scripts/
-PYTHONPATH=.. python simplePQRS.py > ${PROJECT_DIRECTORY}/generated_artifacts/binaries_generation_output.txt
+#PYTHONPATH=.. python simplePQRS.py > ${PROJECT_DIRECTORY}/generated_artifacts/binaries_generation_output.txt
+PYTHONPATH=.. python simple.py > ${PROJECT_DIRECTORY}/generated_artifacts/binaries_generation_output.txt
 echo "-> binaries generated successfully"
 
 ## Moves binaries generated to the artifact folder

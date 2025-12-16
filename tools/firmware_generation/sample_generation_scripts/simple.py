@@ -52,8 +52,8 @@ NO_CBS_BLOCKS = 16
 NO_ETH_PORTS = 5
 NO_PRIORITIES = 8
 SJA1105_DEVICEID = 0x9f00030e
-
-c = Configuration(deviceid = SJA1105_DEVICEID)
+SJA1105qs_DEVICEID = 0xae00030e
+c = Configuration(deviceid = SJA1105qs_DEVICEID)
 
 #############################################################################
 # General Parameters
@@ -288,7 +288,7 @@ mii_mode_parameters_table.append({
     "PHY_MAC[2]"      : 0,  # not applicable for RGMII,
     "xMII_MODE[3]"    : RGMII,
     "PHY_MAC[3]"      : 0,  # not applicable for RGMII,
-    "xMII_MODE[4]"    : RGMII,
+    "xMII_MODE[4]"    : SGMII,
     "PHY_MAC[4]"      : 0,  # not applicable for RGMII,
 })
 

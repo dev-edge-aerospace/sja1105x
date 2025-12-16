@@ -39,6 +39,7 @@
 #include "typedefs.h"
 
 #include <linux/string.h>
+#include <linux/kernel.h>
 
 #include "NXP_SJA1105P_portConfig.h"
 #include "NXP_SJA1105P_auxiliaryConfigurationUnit.h"
@@ -272,27 +273,29 @@ extern uint8_t initSgmii(uint8_t switchId, uint8_t autoNegotiation, SJA1105P_spe
 	const uint8_t k_txAttn  = 0x1;  /* ~650mVpp TX signal */
 	const uint8_t k_txBoost = 0;    /* boost disabled */
 	const uint8_t k_rxEqVal = 0;    /* Rx equalizer disabled */
-	const uint8_t k_txLvl   = 0;    /* Lowest level */
+	const uint8_t k_txLvl   = 0x0;    /* Lowest level */
 	const uint8_t k_losLvl  = 0x9;  /* 50mVpp threshold */
 	SJA1105P_levelControlArgument_t levelControl;
 
-	SJA1105P_basicControlArgument_t    basicControl;
+	//SJA1105P_basicControlArgument_t    basicControl;
 	SJA1105P_digitalControl2Argument_t digitalControl2;
-	SJA1105P_autonegControlArgument_t  autonegControl;
-	SJA1105P_digitalControl1Argument_t digitalControl1;
-
+	//SJA1105P_autonegControlArgument_t  autonegControl;
+	//SJA1105P_digitalControl1Argument_t digitalControl1;
+	/*
 	ret  = SJA1105P_getBasicControl(&basicControl, switchId);
 	if (autoNegotiation == 0U)
 	{
 		basicControl.speedSelect = speed;
+		printk("Test printing speed: %x\r\n", speed);
 	}
-	basicControl.autonegEnable = 0;  /* Disable auto-negotiation */
-	ret += SJA1105P_setBasicControl(&basicControl, switchId);
-
+	*/
+	// basicControl.autonegEnable = 0;  /* Disable auto-negotiation */
+	// ret += SJA1105P_setBasicControl(&basicControl, switchId);
+	
 	/* Invert Tx polarity */
 	digitalControl2.txPolInv = 1;
 	digitalControl2.rxPolInv = 0;
-	ret += SJA1105P_setDigitalControl2(&digitalControl2, switchId);
+	ret = SJA1105P_setDigitalControl2(&digitalControl2, switchId);
 
 	/* Make physical settings */
 	levelControl.losLvl = k_losLvl;
@@ -302,7 +305,7 @@ extern uint8_t initSgmii(uint8_t switchId, uint8_t autoNegotiation, SJA1105P_spe
 	ret += SJA1105P_setTxBoostControl(k_txBoost, switchId);
 	ret += SJA1105P_setRxEqControl(k_rxEqVal, switchId);
 	ret += SJA1105P_setTxEdgeControl(SJA1105P_e_txEdgerate_FAST, switchId);
-
+	/*****
 	if (autoNegotiation == 1U)
 	{
 		ret += SJA1105P_getAutonegControl(&autonegControl, switchId);
@@ -310,15 +313,18 @@ extern uint8_t initSgmii(uint8_t switchId, uint8_t autoNegotiation, SJA1105P_spe
 		autonegControl.autonegMode = SJA1105P_e_autonegMode_CL37_SGMII;
 		ret += SJA1105P_setAutonegControl(&autonegControl, switchId);
 		if (phyMode == 0U)
-		{  /* MAC mode */
+		{ //  MAC mode 
 			ret += SJA1105P_getDigitalControl1(&digitalControl1, switchId);
-			digitalControl1.macAutoSw = 1;  /* Automatically switch speed after auto-negotiation is complete */
+			digitalControl1.macAutoSw = 1; // Automatically switch speed after auto-negotiation is complete 
 			ret += SJA1105P_setDigitalControl1(&digitalControl1, switchId);
 		}
 
-		basicControl.autonegEnable = 1;  /* Enable auto-negotiation */
+		basicControl.autonegEnable = 1;  // Enable auto-negotiation 
 		ret += SJA1105P_setBasicControl(&basicControl, switchId);
+		printk("Test message entered auto negotiation\r\n");
 	}
+	*/ 
+	printk("Test message to check SGMII configuration\r\n");
 
 	return ret;
 }
@@ -533,8 +539,10 @@ static uint8_t configPort(uint8_t port, uint8_t switchId,  SJA1105P_speed_t spee
 					ret += SJA1105P_setIdivCControlRegister(&idivCControlRegister, port, switchId);
 				}
 				ret += SJA1105P_setMiixClockControlRegister(&miixClockControlRegister, port, SJA1105P_e_miixInternalClk_MII_TX_CLK, switchId);	
-				ret += SJA1105P_setMiixClockControlRegister(&miixClockControlRegister, port, SJA1105P_e_miixInternalClk_MII_RX_CLK, switchId);	
+				ret += SJA1105P_setMiixClockControlRegister(&miixClockControlRegister, port, SJA1105P_e_miixInternalClk_MII_RX_CLK, switchId);
+				// Hugo : Added auto neg for testing	
 				ret += initSgmii(switchId, 0, speed, phyMode);  /* Init SGMII without auto-negotiation */
+				printk("Test message configured SGMII\r\n");
 			}
 			break;
 		}
