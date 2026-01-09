@@ -330,7 +330,6 @@ extern uint8_t initSgmii(uint8_t switchId, uint8_t autoNegotiation, SJA1105P_spe
 		printk("Test message entered auto negotiation\r\n");
 	}
 	*/ 
-	printk("Test message to check SGMII configuration\r\n");
 
 	return ret;
 }
@@ -548,7 +547,6 @@ static uint8_t configPort(uint8_t port, uint8_t switchId,  SJA1105P_speed_t spee
 				ret += SJA1105P_setMiixClockControlRegister(&miixClockControlRegister, port, SJA1105P_e_miixInternalClk_MII_RX_CLK, switchId);
 				// Hugo : Added auto neg for testing	
 				ret += initSgmii(switchId, 0, speed, phyMode);  /* Init SGMII without auto-negotiation */
-				printk("Test message configured SGMII\r\n");
 			}
 			break;
 		}
