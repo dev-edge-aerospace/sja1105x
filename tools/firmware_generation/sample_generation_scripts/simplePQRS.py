@@ -355,16 +355,16 @@ PHY_MODE = 1
 MAC_MODE = 0
 
 mii_mode_parameters.append({
-    "xMII_MODE[0]"    : SGMII,
-    "PHY_MAC[0]"      : 0,  # not applicable for RGMII,
+    "xMII_MODE[0]"    : RGMII,
+    "PHY_MAC[0]"      : MAC_MODE,  # not applicable for RGMII,
     "xMII_MODE[1]"    : RGMII,
-    "PHY_MAC[1]"      : 0,  # not applicable for RGMII,
+    "PHY_MAC[1]"      : MAC_MODE,  # not applicable for RGMII,
     "xMII_MODE[2]"    : RGMII,
-    "PHY_MAC[2]"      : 0,  # not applicable for RGMII,
+    "PHY_MAC[2]"      : MAC_MODE,  # not applicable for RGMII,
     "xMII_MODE[3]"    : RGMII,
-    "PHY_MAC[3]"      : 0,  # not applicable for RGMII,
-    "xMII_MODE[4]"    : RGMII,
-    "PHY_MAC[4]"      : 0,  # not applicable for RGMII,
+    "PHY_MAC[3]"      : MAC_MODE,  # not applicable for RGMII,
+    "xMII_MODE[4]"    : SGMII,
+    "PHY_MAC[4]"      : MAC_MODE,  # not applicable for RGMII,
 })
 
 #############################################################################
